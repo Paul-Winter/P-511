@@ -12,9 +12,21 @@ namespace WindowsFormsApp1
 {
     public partial class Form3 : Form
     {
+        public string Text
+        {
+            set
+            {
+                richTextBox1.Text = data;
+            }
+        }
         public Form3()
         {
             InitializeComponent();
+        }
+        public Form3(string data)
+        {
+            InitializeComponent();
+            richTextBox1.Text = data;
         }
     }
 }
