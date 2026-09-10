@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
         {
             set
             {
-                richTextBox1.Text = data;
+                richTextBox1.Text = value;
             }
         }
         public Form3()
