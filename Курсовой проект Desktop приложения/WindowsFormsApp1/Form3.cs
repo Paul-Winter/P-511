@@ -28,5 +28,11 @@ namespace WindowsFormsApp1
             InitializeComponent();
             richTextBox1.Text = data;
         }
+
+        public DialogResult ShowDialog(string data)
+        {
+            richTextBox1.Text = data;
+            return ShowDialog();
+        }
     }
 }

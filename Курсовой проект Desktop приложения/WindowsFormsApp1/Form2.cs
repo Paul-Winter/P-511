@@ -19,11 +19,9 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form3 form = new Form3();
+            Form3 form = new Form3();            
 
-            form.Text = textBox1.Text;
-
-            form.ShowDialog();
+            form.ShowDialog(textBox1.Text.ToString());
         }
     }
 }
