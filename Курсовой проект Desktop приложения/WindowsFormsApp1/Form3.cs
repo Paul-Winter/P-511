@@ -30,9 +30,14 @@ namespace WindowsFormsApp1
         }
 
         public DialogResult ShowDialog(string data)
-        {
+        {            
             richTextBox1.Text = data;
             return ShowDialog();
+        }        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
