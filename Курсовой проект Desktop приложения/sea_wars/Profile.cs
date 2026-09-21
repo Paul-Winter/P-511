@@ -11,7 +11,7 @@ namespace sea_wars
         public int[] ratings = new int[0];
         public bool[,] wins = new bool[0, 10];
         public string[,] winsperson = new string[0, 10];
-        public string[] result = new string[0];
+        public string[] result = new string[10];
         public bool[] wins1 = new bool[10];
         public bool[] wins2 = new bool[10];
         public string[] winsperson1 = new string[10];
@@ -86,10 +86,9 @@ namespace sea_wars
                 tryautorize2--;
                 return false;
             }
-            Console.Clear();
             tryautorize2--;
-            Console.WriteLine($"Введен неверный логин или пароль! Осталось {tryautorize2} попытки.");
-            if (tryautorize2 == 0) { Console.WriteLine("\nПопытки кончились! Вы возвращаетесь в меню."); Environment.Exit(0); }
+            MessageBox.Show($"Неверный логин или пароль.\nОсталось {tryautorize2} попыток.", "Упс...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (tryautorize1 == 0) { MessageBox.Show("Попыток больше не осталось...", "Упс...", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             return false;
         }
         public bool RegisterUser(string login, string pass, string filePath)
@@ -582,22 +581,6 @@ namespace sea_wars
             int arrayIdx = 10 - gameNumber;
             if (winsperson[idx, arrayIdx] == "-") return "-1";
             return winsperson[idx, arrayIdx];
-        }
-        public string[] GetTop10()
-        {
-            int count = Math.Min(10, logins.Length);
-            int[] indices = new int[logins.Length];
-            for (int i = 0; i < indices.Length; i++) indices[i] = i;
-
-            Array.Sort(indices, (a, b) => ratings[b].CompareTo(ratings[a]));
-
-            result = new string[count];
-            for (int i = 0; i < count; i++)
-            {
-                int idx = indices[i];
-                result[i] = $"{i + 1}. {logins[idx]} - {ratings[idx]}";
-            }
-            return result;
         }
     }
 }

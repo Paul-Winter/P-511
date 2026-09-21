@@ -154,7 +154,6 @@ namespace sea_wars
                             play.Setdeck2auto();
                         else
                             play.Setdeck2();
-                        play.Print2decks();
                         profile.rating1 -= 30;
                         profile.rating2 -= 30;
 
@@ -173,7 +172,7 @@ namespace sea_wars
                         profile.SaveToFile(filePath);
                         while (play.Checkwin() == 0)
                         {
-                            play.Step();
+                            play.Step(1,1);
                         }
                         if (botplay.Checkwin() == 1)
                         {
@@ -207,7 +206,6 @@ namespace sea_wars
                             botplay.Setdeck1();
 
                         botplay.Setdeck2();
-                        botplay.Print2decks();
                         profile.rating1 -= 10;
 
                         for (int i = 0; i < 9; i++)
@@ -221,7 +219,7 @@ namespace sea_wars
                         profile.SaveToFile(filePath);
                         while (botplay.Checkwin() == 0)
                         {
-                            botplay.Step();
+                            botplay.Step(1,1);
                         }
                         if (botplay.Checkwin() == 1)
                         {

@@ -112,7 +112,8 @@
             // 
             // openFileDialog1
             // 
-            openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.FileName = "profiles.txt";
+            resources.ApplyResources(openFileDialog1, "openFileDialog1");
             // 
             // buttonopen
             // 

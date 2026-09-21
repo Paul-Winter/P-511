@@ -7,14 +7,14 @@ namespace sea_wars
 {
     public class Game
     {
-        protected int[,] deck1 = new int[12, 12];
-        protected int[,] deck2 = new int[12, 12];
+        public int[,] deck1 = new int[12, 12];
+        public int[,] deck2 = new int[12, 12];
         protected char[] symbols = new char[10];
         protected string password1;
         protected string password2;
         protected const int symbolssum = 64;
-        protected int status1;
-        protected int status2;
+        public int status1;
+        public int status2;
         public Profiles profiles = new Profiles();
         protected Random rand = new Random();
         public Game()
@@ -65,7 +65,7 @@ namespace sea_wars
                 }
             }
         }
-        public void Printdeck1build()
+        /*public void Printdeck1build()
         {
             Console.WriteLine("_ - Пустое поле\no - поле вокруг корабля\nX - корабль\n");
             Console.Write("\t");
@@ -254,7 +254,7 @@ namespace sea_wars
                         Console.Write("? ");
                 }
             }
-        }
+        }*/
         private string ReadToken()
         {
             string token = "";
@@ -307,7 +307,6 @@ namespace sea_wars
                         if (tk.Length > 0) temp1 = tk[0];
                     }
                     Console.Write("\n\n");
-                    Printdeck1public();
                     Console.Write("\n\nНапишите '+' для очистки консоли: ");
                     temp1 = '-';
                     while (temp1 != '+')
@@ -316,7 +315,6 @@ namespace sea_wars
                         if (tk.Length > 0) temp1 = tk[0];
                     }
                     Console.Clear();
-                    Print2decks();
                     Console.Write("Напишите любой символ: ");
                     temper = true;
                 }
@@ -331,7 +329,6 @@ namespace sea_wars
                         if (tk.Length > 0) temp1 = tk[0];
                     }
                     Console.Write("\n\n");
-                    Printdeck2public();
                     Console.Write("\n\nНапишите '+' для очистки консоли: ");
                     temp1 = '-';
                     while (temp1 != '+')
@@ -340,7 +337,6 @@ namespace sea_wars
                         if (tk.Length > 0) temp1 = tk[0];
                     }
                     Console.Clear();
-                    Print2decks();
                     Console.Write("Напишите любой символ: ");
                     temper = true;
                 }
@@ -359,7 +355,6 @@ namespace sea_wars
         {
             Console.Clear();
             bool temp = false;
-            Printdeck1build();
             Console.WriteLine("\n\nПостановка " + lenght + "-палубного корабля на доску 1\n");
             int temp1 = 0; char temp2 = 'А'; bool temp3 = false; bool temp4 = false; int reboot = 0;
             int A = 0, B = 0;
@@ -613,7 +608,6 @@ namespace sea_wars
             }
             Console.Clear();
             Console.WriteLine("Итоговая доска 1:");
-            Printdeck1build();
             Console.Write("\n\nНапишите \"+\" чтобы очистить консоль: ");
             string tk4 = ReadToken();
             if (tk4.Length > 0) temp = tk4[0];
@@ -629,7 +623,6 @@ namespace sea_wars
         {
             Console.Clear();
             bool temp = false;
-            Printdeck2build();
             Console.WriteLine("\n\nПостановка " + lenght + "-палубного корабля на доску 2\n");
             int temp1 = 0; char temp2 = 'А'; bool temp3 = false; bool temp4 = false; int reboot = 0;
             int A = 0, B = 0;
@@ -884,7 +877,6 @@ namespace sea_wars
             }
             Console.Clear();
             Console.WriteLine("Итоговая доска 2:");
-            Printdeck2build();
             Console.Write("\n\nНапишите \"+\" чтобы очистить консоль: ");
             string tk4 = ReadToken();
             if (tk4.Length > 0) temp = tk4[0];
@@ -898,7 +890,6 @@ namespace sea_wars
         }
         public int Setshipdeck1auto(int lenght)
         {
-            Console.Clear();
             bool temp = false;
             int temp1 = 0;
             bool temp3 = false;
@@ -1052,7 +1043,6 @@ namespace sea_wars
         }
         public int Setdeck1auto()
         {
-            Console.WriteLine("\nРасстановка кораблей роботом...\n");
             int ship1 = 4; int ship2 = 3; int ship3 = 2; int ship4 = 1;
             int temp1;
             while (ship1 != 0 || ship2 != 0 || ship3 != 0 || ship4 != 0)
@@ -1082,7 +1072,6 @@ namespace sea_wars
                         break;
                 }
             }
-            Console.WriteLine("Робот завершил расстановку\n");
             return 0;
         }
         public static void ParseInput(string input, out int a, out int b)
@@ -1108,7 +1097,6 @@ namespace sea_wars
         }
         public int Setshipdeck2auto(int lenght)
         {
-            Console.Clear();
             bool temp = false;
             int temp1 = 0;
             bool temp3 = false;
@@ -1140,7 +1128,8 @@ namespace sea_wars
                     reboot++;
                     if (reboot == 50)
                     {
-                        Setshipdeck1auto(lenght);
+                        Setshipdeck2auto(lenght);
+                        Setshipdeck2auto(lenght);
                         return 0;
                     }
                     temp1 = rand.Next(1, 5);
@@ -1259,7 +1248,6 @@ namespace sea_wars
         }
         public int Setdeck2auto()
         {
-            Console.WriteLine("\nРасстановка кораблей роботом...\n");
             int ship1 = 4; int ship2 = 3; int ship3 = 2; int ship4 = 1;
             int temp1;
             while (ship1 != 0 || ship2 != 0 || ship3 != 0 || ship4 != 0)
@@ -1289,13 +1277,11 @@ namespace sea_wars
                         break;
                 }
             }
-            Console.WriteLine("Робот завершил расстановку\n");
             return 0;
         }
         public virtual void Kill()
         {
             Console.Clear();
-            Print2decks();
             Console.Write("\n\nУбит!");
         }
         public bool Checkbot(bool C)
@@ -1388,7 +1374,6 @@ namespace sea_wars
                 {
                     deck2[A, B] = 3;
                     Console.Clear();
-                    Print2decks();
                     Console.WriteLine("\n\nПромах!");
                     status1 = 0; status2 = 1;
                     return 0;
@@ -1439,7 +1424,6 @@ namespace sea_wars
                     if (still_alive)
                     {
                         Console.Clear();
-                        Print2decks();
                         Console.WriteLine("\nПопал!");
                     }
                     else
@@ -1461,19 +1445,19 @@ namespace sea_wars
                             {
                                 deck2[A, B - 3] = 5; deck2[A, B + 2] = 5;
                                 for (int i = B - 3; i < B + 3; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else if (deck2[A, B + 2] == 4)
                             {
                                 deck2[A, B + 3] = 5; deck2[A, B - 2] = 5;
                                 for (int i = B - 2; i < B + 4; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else
                             {
                                 deck2[A, B + 2] = 5; deck2[A, B - 2] = 5;
                                 for (int i = B - 2; i < B + 3; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                         }
                         if (temp2 == 1 && temp4 == 1)
@@ -1482,19 +1466,19 @@ namespace sea_wars
                             {
                                 deck2[A - 3, B] = 5; deck2[A + 2, B] = 5;
                                 for (int i = A - 3; i < A + 3; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else if (deck2[A + 2, B] == 4)
                             {
                                 deck2[A + 3, B] = 5; deck2[A - 2, B] = 5;
                                 for (int i = A - 2; i < A + 4; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else
                             {
                                 deck2[A + 2, B] = 5; deck2[A - 2, B] = 5;
                                 for (int i = A - 2; i < A + 3; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                         }
                         if (temp1 == 1)
@@ -1505,15 +1489,15 @@ namespace sea_wars
                                 {
                                     deck2[A, B + 1] = 5; deck2[A, B - 4] = 5;
                                     for (int i = B - 4; i < B + 2; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck2[A, B + 1] = 5; deck2[A, B - 3] = 5;
                                 for (int i = B - 3; i < B + 2; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck2[A, B + 1] = 5; deck2[A, B - 2] = 5;
                             for (int i = B - 2; i < B + 2; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                         if (temp3 == 1)
                         {
@@ -1523,15 +1507,15 @@ namespace sea_wars
                                 {
                                     deck2[A, B - 1] = 5; deck2[A, B + 4] = 5;
                                     for (int i = B - 1; i < B + 5; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck2[A, B - 1] = 5; deck2[A, B + 3] = 5;
                                 for (int i = B - 1; i < B + 4; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck2[A, B - 1] = 5; deck2[A, B + 2] = 5;
                             for (int i = B - 1; i < B + 3; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                         if (temp2 == 1)
                         {
@@ -1541,15 +1525,15 @@ namespace sea_wars
                                 {
                                     deck2[A + 1, B] = 5; deck2[A - 4, B] = 5;
                                     for (int i = A - 4; i < A + 2; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck2[A + 1, B] = 5; deck2[A - 3, B] = 5;
                                 for (int i = A - 3; i < A + 2; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck2[A + 1, B] = 5; deck2[A - 2, B] = 5;
                             for (int i = A - 2; i < A + 2; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                         if (temp4 == 1)
                         {
@@ -1559,15 +1543,15 @@ namespace sea_wars
                                 {
                                     deck2[A - 1, B] = 5; deck2[A + 4, B] = 5;
                                     for (int i = A - 1; i < A + 5; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck2[A - 1, B] = 5; deck2[A + 3, B] = 5;
                                 for (int i = A - 1; i < A + 4; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck2[A - 1, B] = 5; deck2[A + 2, B] = 5;
                             for (int i = A - 1; i < A + 3; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                     }
                 }
@@ -1579,7 +1563,6 @@ namespace sea_wars
                 {
                     deck1[A, B] = 3;
                     Console.Clear();
-                    Print2decks();
                     Console.WriteLine("\n\nПромах!");
                     status2 = 0; status1 = 1;
                     return 0;
@@ -1630,7 +1613,6 @@ namespace sea_wars
                     if (still_alive)
                     {
                         Console.Clear();
-                        Print2decks();
                         Console.WriteLine("\nПопал!");
                     }
                     else
@@ -1652,19 +1634,19 @@ namespace sea_wars
                             {
                                 deck1[A, B - 3] = 5; deck1[A, B + 2] = 5;
                                 for (int i = B - 3; i < B + 3; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else if (deck1[A, B + 2] == 4)
                             {
                                 deck1[A, B + 3] = 5; deck1[A, B - 2] = 5;
                                 for (int i = B - 2; i < B + 4; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else
                             {
                                 deck1[A, B + 2] = 5; deck1[A, B - 2] = 5;
                                 for (int i = B - 2; i < B + 3; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                         }
                         if (temp2 == 1 && temp4 == 1)
@@ -1673,19 +1655,19 @@ namespace sea_wars
                             {
                                 deck1[A - 3, B] = 5; deck1[A + 2, B] = 5;
                                 for (int i = A - 3; i < A + 3; i++) { deck1[i, B - 1] = 5; deck1[i, B + 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else if (deck1[A + 2, B] == 4)
                             {
                                 deck1[A + 3, B] = 5; deck1[A - 2, B] = 5;
                                 for (int i = A - 2; i < A + 4; i++) { deck1[i, B - 1] = 5; deck1[i, B + 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             else
                             {
                                 deck1[A + 2, B] = 5; deck1[A - 2, B] = 5;
                                 for (int i = B - 2; i < B + 3; i++) { deck1[i, B + 1] = 5; deck1[i, B - 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                         }
                         if (temp1 == 1)
@@ -1696,15 +1678,15 @@ namespace sea_wars
                                 {
                                     deck1[A, B + 1] = 5; deck1[A, B - 4] = 5;
                                     for (int i = B - 4; i < B + 2; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck1[A, B + 1] = 5; deck1[A, B - 3] = 5;
                                 for (int i = B - 3; i < B + 2; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck1[A, B + 1] = 5; deck1[A, B - 2] = 5;
                             for (int i = B - 2; i < B + 2; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                         if (temp3 == 1)
                         {
@@ -1714,15 +1696,15 @@ namespace sea_wars
                                 {
                                     deck1[A, B - 1] = 5; deck1[A, B + 4] = 5;
                                     for (int i = B - 1; i < B + 5; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck1[A, B - 1] = 5; deck1[A, B + 3] = 5;
                                 for (int i = B - 1; i < B + 4; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck1[A, B - 1] = 5; deck1[A, B + 2] = 5;
                             for (int i = B - 1; i < B + 3; i++) { deck1[A - 1, i] = 5; deck1[A + 1, i] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                         if (temp2 == 1)
                         {
@@ -1732,15 +1714,15 @@ namespace sea_wars
                                 {
                                     deck1[A + 1, B] = 5; deck1[A - 4, B] = 5;
                                     for (int i = A - 4; i < A + 2; i++) { deck1[i, B - 1] = 5; deck1[i, B + 1] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck1[A + 1, B] = 5; deck1[A - 3, B] = 5;
                                 for (int i = A - 3; i < A + 2; i++) { deck1[i, B + 1] = 5; deck1[i, B - 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck1[A + 1, B] = 5; deck1[A - 2, B] = 5;
                             for (int i = A - 2; i < A + 2; i++) { deck1[i, B + 1] = 5; deck1[i, B - 1] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                         if (temp4 == 1)
                         {
@@ -1750,15 +1732,15 @@ namespace sea_wars
                                 {
                                     deck1[A - 1, B] = 5; deck1[A + 4, B] = 5;
                                     for (int i = A - 1; i < A + 5; i++) { deck1[i, B - 1] = 5; deck1[i, B + 1] = 5; }
-                                    Kill(); return 0;
+                                    return 2;
                                 }
                                 deck1[A - 1, B] = 5; deck1[A + 3, B] = 5;
                                 for (int i = A - 1; i < A + 4; i++) { deck1[i, B - 1] = 5; deck1[i, B + 1] = 5; }
-                                Kill(); return 0;
+                                return 2;
                             }
                             deck1[A - 1, B] = 5; deck1[A + 2, B] = 5;
                             for (int i = A - 1; i < A + 3; i++) { deck1[i, B + 1] = 5; deck1[i, B - 1] = 5; }
-                            Kill(); return 0;
+                            return 2;
                         }
                     }
                 }
@@ -1793,7 +1775,7 @@ namespace sea_wars
             else if (!temp2) return 1;
             else return 0;
         }
-        public virtual void Step()
+        public virtual void Step(int row, int col)
         {
             bool temp3 = false;
             int temp1 = 0;
@@ -1807,8 +1789,7 @@ namespace sea_wars
                 while (!temp3)
                 {
                     Console.Write("Выберите позицию для удара (цифру от 1 до 10 и заглавную английскую букву от " + symbols[0] + " до " + symbols[9] + " (A1, B2) (0K для просмотра доск)): ");
-                    string input = Console.ReadLine();
-                    ParseInput(input, out A, out B);
+                    
                     if (A == 0 && B == 11)
                     {
                         Checkdeck();
@@ -1827,8 +1808,7 @@ namespace sea_wars
                 while (!temp3)
                 {
                     Console.Write("Выберите позицию для удара (цифру от 1 до 10 и заглавную английскую букву от " + symbols[0] + " до " + symbols[9] + " (A1, B2) (0K для просмотра доск)): ");
-                    string input = Console.ReadLine();
-                    ParseInput(input, out A, out B);
+                    
                     if (A == 0 && B == 11)
                     {
                         Checkdeck();
@@ -1872,7 +1852,7 @@ namespace sea_wars
                 }
             }
         }
-        public override void Print2decks()
+        /*public override void Print2decks()
         {
             Console.WriteLine("_ - Пустое поле\nO - Промах или поле вокруг разбитого корабля\nX - попадание по кораблю\n");
             Console.WriteLine("\t\t1 Доска\t\t\t\t\t2 Доска");
@@ -1915,7 +1895,7 @@ namespace sea_wars
                         Console.Write("? ");
                 }
             }
-        }
+        }*/
         public override int Setshipdeck2(int lenght)
         {
             bool temp = false;
@@ -3142,31 +3122,12 @@ namespace sea_wars
             }
         }
     }*/
-        public void Step()
+        public int Step(int row, int col)
         {
             if (status1 == 1 || status1 == 2 || status2 == 0)
-            {
-                status1 = 0;
-                status2 = 1;
-                Console.WriteLine("\n\nХод 1 игрока\n");
-                bool temp3 = false;
-                int A = 0; int B = 0;
-                while (!temp3)
-                {
-                    Console.Write($"Выберите позицию для удара (цифру от 1 до 10 и заглавную английскую букву от {symbols[0]} до {symbols[9]} (A1, B2)(0 - показать свою доску)): ");
-                    string input = Console.ReadLine();
-                    ParseInput(input, out A, out B);
-                    if (A >= 1 && A <= 10 && B >= 1 && B <= 10 && deck2[A, B] != 3 && deck2[A, B] != 4 && deck2[A, B] != 5)
-                        temp3 = true;
-                    else
-                        Console.WriteLine("\nПрограмма не смогла определить позицию удара или в эту позицию нельзя ударить! Попробуйте еще раз\n");
-                }
-                Check(A, B);
-            }
+                return Check(row, col);
             else
             {
-                Console.WriteLine("\nХод Робота...");
-                System.Threading.Thread.Sleep(600);
 
                 int targetA = 0;
                 int targetB = 0;
@@ -3255,97 +3216,279 @@ namespace sea_wars
                     }
                     while (deck1[targetA, targetB] == 3 || deck1[targetA, targetB] == 4 || deck1[targetA, targetB] == 5);
                 }
-
-                Check(targetA, targetB);
+                Datas.lastPoint = new Point(targetA,targetB);
+                return Check(targetA, targetB);
             }
         }
         public int Check(int A, int B)
         {
-            Console.WriteLine();
-            Console.WriteLine("Робот бьет в позицию: " + A + (char)(B + symbolssum));
+            int temp1 = 2; int temp2 = 2; int temp3 = 2; int temp4 = 2;
+            int tempA = A; int tempB = B;
+            bool still_alive = false;
 
-            if (deck1[A, B] == 0 || deck1[A, B] == 1)
+            if (status1 == 1 || status1 == 2 || status2 == 0)
             {
-                deck1[A, B] = 3;
-                Console.Clear();
-                Print2decks();
-                Console.WriteLine("\nРобот промахнулся!");
-                status1 = 1;
-                status2 = 0;
-                return 0;
-            }
-            else if (deck1[A, B] == 2)
-            {
-                deck1[A, B] = 4;
+                if (deck2[A, B] == 0 || deck2[A, B] == 1)
+                {
+                    deck2[A, B] = 3;
+                    status1 = 0; status2 = 1;
+                    return 0;
+                }
+                else if (deck2[A, B] == 2)
+                {
+                    deck2[A, B] = 4;
+                    status1 = 2; status2 = 0;
 
-                bool still_alive = false;
-                int checkB = B;
-                while (checkB >= 1 && (deck1[A, checkB] == 4 || deck1[A, checkB] == 2))
-                {
-                    if (deck1[A, checkB] == 2) still_alive = true;
-                    checkB--;
-                }
-                checkB = B;
-                while (checkB <= 10 && (deck1[A, checkB] == 4 || deck1[A, checkB] == 2))
-                {
-                    if (deck1[A, checkB] == 2) still_alive = true;
-                    checkB++;
-                }
-                int checkA = A;
-                while (checkA >= 1 && (deck1[checkA, B] == 4 || deck1[checkA, B] == 2))
-                {
-                    if (deck1[checkA, B] == 2) still_alive = true;
-                    checkA--;
-                }
-                checkA = A;
-                while (checkA <= 10 && (deck1[checkA, B] == 4 || deck1[checkA, B] == 2))
-                {
-                    if (deck1[checkA, B] == 2) still_alive = true;
-                    checkA++;
-                }
-                if (still_alive)
-                {
-                    if (botcorda == 0 && botcordb == 0)
+                    if (deck2[A, B - 1] == 2 || deck2[A, B - 1] == 4) temp1 = 0;
+                    if (deck2[A - 1, B] == 2 || deck2[A - 1, B] == 4) temp2 = 0;
+                    if (deck2[A, B + 1] == 2 || deck2[A, B + 1] == 4) temp3 = 0;
+                    if (deck2[A + 1, B] == 2 || deck2[A + 1, B] == 4) temp4 = 0;
+
+                    if (temp1 == 0)
                     {
-                        botcorda = A;
-                        botcordb = B;
+                        if (deck2[A, B - 2] == 2 || deck2[A, B - 2] == 4) temp1 = 2;
+                        if (temp1 == 2)
+                            if (deck2[A, B - 3] == 2 || deck2[A, B - 2] == 2 || deck2[A, B] == 2 || deck2[A, B - 1] == 2) still_alive = true;
+                        if (temp1 == 0)
+                            if (deck2[A, B - 1] == 2 || deck2[A, B] == 2) still_alive = true;
                     }
-                    Console.Clear();
-                    Print2decks();
-                    Console.WriteLine("\nРобот ранил ваш корабль и ходит еще раз!");
-                    status1 = 0;
-                    status2 = 1;
-                }
-                else
-                {
-                    int minA = A, maxA = A, minB = B, maxB = B;
-                    while (minA >= 1 && deck1[minA, B] == 4) minA--;
-                    while (maxA <= 10 && deck1[maxA, B] == 4) maxA++;
-                    while (minB >= 1 && deck1[A, minB] == 4) minB--;
-                    while (maxB <= 10 && deck1[A, maxB] == 4) maxB++;
-
-                    for (int i = minA; i <= maxA; i++)
+                    if (temp3 == 0)
                     {
-                        for (int j = minB; j <= maxB; j++)
+                        if (deck2[A, B + 2] == 2 || deck2[A, B + 2] == 4) temp3 = 2;
+                        if (temp3 == 2)
+                            if (deck2[A, B + 3] == 2 || deck2[A, B + 2] == 2 || deck2[A, B] == 2 || deck2[A, B + 1] == 2) still_alive = true;
+                        if (temp3 == 0)
+                            if (deck2[A, B + 1] == 2 || deck2[A, B] == 2) still_alive = true;
+                    }
+                    if (temp2 == 0)
+                    {
+                        if (deck2[A - 2, B] == 2 || deck2[A - 2, B] == 4) temp2 = 2;
+                        if (temp2 == 2)
+                            if (deck2[A - 3, B] == 2 || deck2[A - 2, B] == 2 || deck2[A, B] == 2 || deck2[A - 1, B] == 2) still_alive = true;
+                        if (temp2 == 0)
+                            if (deck2[A - 1, B] == 2 || deck2[A, B] == 2) still_alive = true;
+                    }
+                    if (temp4 == 0)
+                    {
+                        if (deck2[A + 2, B] == 2 || deck2[A + 2, B] == 4) temp4 = 2;
+                        if (temp4 == 2)
+                            if (deck2[A + 3, B] == 2 || deck2[A + 2, B] == 2 || deck2[A, B] == 2 || deck2[A + 1, B] == 2) still_alive = true;
+                        if (temp4 == 0)
+                            if (deck2[A + 1, B] == 2 || deck2[A, B] == 2) still_alive = true;
+                    }
+
+                    if (still_alive)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        if (deck2[A + 1, B] == 4) temp4 = 1;
+                        if (deck2[A - 1, B] == 4) temp2 = 1;
+                        if (deck2[A, B - 1] == 4) temp1 = 1;
+                        if (deck2[A, B + 1] == 4) temp3 = 1;
+
+                        if (temp1 != 1 && temp2 != 1 && temp3 != 1 && temp4 != 1)
                         {
-                            if (i >= 1 && i <= 10 && j >= 1 && j <= 10)
+                            deck2[A - 1, B] = 5; deck2[A + 1, B] = 5; deck2[A, B + 1] = 5; deck2[A, B - 1] = 5;
+                            deck2[A - 1, B - 1] = 5; deck2[A + 1, B - 1] = 5; deck2[A - 1, B + 1] = 5; deck2[A + 1, B + 1] = 5;
+                            return 2;
+                        }
+                        if (temp1 == 1 && temp3 == 1)
+                        {
+                            if (deck2[A, B - 2] == 4)
                             {
-                                if (deck1[i, j] != 4)
-                                    deck1[i, j] = 5;
+                                deck2[A, B - 3] = 5; deck2[A, B + 2] = 5;
+                                for (int i = B - 3; i < B + 3; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                                return 2;
+                            }
+                            else if (deck2[A, B + 2] == 4)
+                            {
+                                deck2[A, B + 3] = 5; deck2[A, B - 2] = 5;
+                                for (int i = B - 2; i < B + 4; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                                return 2;
+                            }
+                            else
+                            {
+                                deck2[A, B + 2] = 5; deck2[A, B - 2] = 5;
+                                for (int i = B - 2; i < B + 3; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                                return 2;
                             }
                         }
+                        if (temp2 == 1 && temp4 == 1)
+                        {
+                            if (deck2[A - 2, B] == 4)
+                            {
+                                deck2[A - 3, B] = 5; deck2[A + 2, B] = 5;
+                                for (int i = A - 3; i < A + 3; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
+                                return 2;
+                            }
+                            else if (deck2[A + 2, B] == 4)
+                            {
+                                deck2[A + 3, B] = 5; deck2[A - 2, B] = 5;
+                                for (int i = A - 2; i < A + 4; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
+                                return 2;
+                            }
+                            else
+                            {
+                                deck2[A + 2, B] = 5; deck2[A - 2, B] = 5;
+                                for (int i = A - 2; i < A + 3; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
+                                return 2;
+                            }
+                        }
+                        if (temp1 == 1)
+                        {
+                            if (deck2[A, B - 2] == 4)
+                            {
+                                if (deck2[A, B - 3] == 4)
+                                {
+                                    deck2[A, B + 1] = 5; deck2[A, B - 4] = 5;
+                                    for (int i = B - 4; i < B + 2; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                                    return 2;
+                                }
+                                deck2[A, B + 1] = 5; deck2[A, B - 3] = 5;
+                                for (int i = B - 3; i < B + 2; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                                return 2;
+                            }
+                            deck2[A, B + 1] = 5; deck2[A, B - 2] = 5;
+                            for (int i = B - 2; i < B + 2; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                            return 2;
+                        }
+                        if (temp3 == 1)
+                        {
+                            if (deck2[A, B + 2] == 4)
+                            {
+                                if (deck2[A, B + 3] == 4)
+                                {
+                                    deck2[A, B - 1] = 5; deck2[A, B + 4] = 5;
+                                    for (int i = B - 1; i < B + 5; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                                    return 2;
+                                }
+                                deck2[A, B - 1] = 5; deck2[A, B + 3] = 5;
+                                for (int i = B - 1; i < B + 4; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                                return 2;
+                            }
+                            deck2[A, B - 1] = 5; deck2[A, B + 2] = 5;
+                            for (int i = B - 1; i < B + 3; i++) { deck2[A - 1, i] = 5; deck2[A + 1, i] = 5; }
+                            return 2;
+                        }
+                        if (temp2 == 1)
+                        {
+                            if (deck2[A - 2, B] == 4)
+                            {
+                                if (deck2[A - 3, B] == 4)
+                                {
+                                    deck2[A + 1, B] = 5; deck2[A - 4, B] = 5;
+                                    for (int i = A - 4; i < A + 2; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
+                                    return 2;
+                                }
+                                deck2[A + 1, B] = 5; deck2[A - 3, B] = 5;
+                                for (int i = A - 3; i < A + 2; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
+                                return 2;
+                            }
+                            deck2[A + 1, B] = 5; deck2[A - 2, B] = 5;
+                            for (int i = A - 2; i < A + 2; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
+                            return 2;
+                        }
+                        if (temp4 == 1)
+                        {
+                            if (deck2[A + 2, B] == 4)
+                            {
+                                if (deck2[A + 3, B] == 4)
+                                {
+                                    deck2[A - 1, B] = 5; deck2[A + 4, B] = 5;
+                                    for (int i = A - 1; i < A + 5; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
+                                    return 2;
+                                }
+                                deck2[A - 1, B] = 5; deck2[A + 3, B] = 5;
+                                for (int i = A - 1; i < A + 4; i++) { deck2[i, B - 1] = 5; deck2[i, B + 1] = 5; }
+                                return 2;
+                            }
+                            deck2[A - 1, B] = 5; deck2[A + 2, B] = 5;
+                            for (int i = A - 1; i < A + 3; i++) { deck2[i, B + 1] = 5; deck2[i, B - 1] = 5; }
+                            return 2;
+                        }
                     }
-                    botcorda = 0;
-                    botcordb = 0;
-                    Console.Clear();
-                    Print2decks();
-                    Console.WriteLine("\nРобот потопил ваш корабль и продолжает свой ход!");
-                    status1 = 0;
-                    status2 = 1;
                 }
-                return 1;
+                return 0;
             }
-            return 0;
+            else
+            {
+                if (deck1[A, B] == 0 || deck1[A, B] == 1)
+                {
+                    deck1[A, B] = 3;
+                    status1 = 1;
+                    status2 = 0;
+                    return 0;
+                }
+                else if (deck1[A, B] == 2)
+                {
+                    deck1[A, B] = 4;
+
+                    still_alive = false;
+                    int checkB = B;
+                    while (checkB >= 1 && (deck1[A, checkB] == 4 || deck1[A, checkB] == 2))
+                    {
+                        if (deck1[A, checkB] == 2) still_alive = true;
+                        checkB--;
+                    }
+                    checkB = B;
+                    while (checkB <= 10 && (deck1[A, checkB] == 4 || deck1[A, checkB] == 2))
+                    {
+                        if (deck1[A, checkB] == 2) still_alive = true;
+                        checkB++;
+                    }
+                    int checkA = A;
+                    while (checkA >= 1 && (deck1[checkA, B] == 4 || deck1[checkA, B] == 2))
+                    {
+                        if (deck1[checkA, B] == 2) still_alive = true;
+                        checkA--;
+                    }
+                    checkA = A;
+                    while (checkA <= 10 && (deck1[checkA, B] == 4 || deck1[checkA, B] == 2))
+                    {
+                        if (deck1[checkA, B] == 2) still_alive = true;
+                        checkA++;
+                    }
+                    if (still_alive)
+                    {
+                        if (botcorda == 0 && botcordb == 0)
+                        {
+                            botcorda = A;
+                            botcordb = B;
+                        }
+                        status1 = 0;
+                        status2 = 1;
+                        return 1; // ранил
+                    }
+                    else
+                    {
+                        int minA = A, maxA = A, minB = B, maxB = B;
+                        while (minA >= 1 && deck1[minA, B] == 4) minA--;
+                        while (maxA <= 10 && deck1[maxA, B] == 4) maxA++;
+                        while (minB >= 1 && deck1[A, minB] == 4) minB--;
+                        while (maxB <= 10 && deck1[A, maxB] == 4) maxB++;
+
+                        for (int i = minA; i <= maxA; i++)
+                        {
+                            for (int j = minB; j <= maxB; j++)
+                            {
+                                if (i >= 1 && i <= 10 && j >= 1 && j <= 10)
+                                {
+                                    if (deck1[i, j] != 4)
+                                        deck1[i, j] = 5;
+                                }
+                            }
+                        }
+                        botcorda = 0;
+                        botcordb = 0;
+                        status1 = 0;
+                        status2 = 1;
+                        return 2; // потопил
+                    }
+                }
+                return 0;
+            }
         }
     }
     public static class Datas
@@ -3358,6 +3501,7 @@ namespace sea_wars
         public static string inputlogreg = " ";
         public static string inputpassreg = " ";
         public static string filePath = @"C:\Users\Student\P-41\C#\Экзамен\Газарян\Sea wars\profile.txt";
+        public static Point lastPoint = new Point();
         public static Game play = new Game();
         public static Botgame botplay = new Botgame();
         public static Profiles profile = new Profiles();

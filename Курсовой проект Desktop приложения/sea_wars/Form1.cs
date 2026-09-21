@@ -66,7 +66,7 @@ namespace sea_wars
             Datas.filePath = saveFileDialog1.FileName;
             if (Datas.profile.CreateDatabaseFile(Datas.filePath) == 1)
                 MessageBox.Show("Создаваемый файл написан не на латинице или не имеет формата .txt.", "Упс...", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (Datas.profile.LoadDatabase(Datas.filePath) == 2)
+            else if (Datas.profile.CreateDatabaseFile(Datas.filePath) == 2)
                 MessageBox.Show("Ошибка файловой системы.", "Упс...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -84,6 +84,7 @@ namespace sea_wars
                 buttonautorize.Enabled = false;
                 buttonregister.Visible = true;
                 buttonregister.Enabled = true;
+                Datas.profile.RegisterUser("Робот", "ImRobotAndImNotHaveAPassword!", Datas.filePath);
                 MessageBox.Show("База данных успешно создана.", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

@@ -107,6 +107,7 @@
             buttonduo.TabIndex = 12;
             buttonduo.Text = "Играть вдвоем (30 рейтинга)";
             buttonduo.UseVisualStyleBackColor = true;
+            buttonduo.Click += buttonduo_Click;
             // 
             // buttonsolo
             // 
@@ -117,6 +118,7 @@
             buttonsolo.TabIndex = 13;
             buttonsolo.Text = "Играть с роботом (10 рейтинга)";
             buttonsolo.UseVisualStyleBackColor = true;
+            buttonsolo.Click += buttonsolo_Click;
             // 
             // buttonprofile
             // 
@@ -748,7 +750,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(582, 354);
+            ClientSize = new Size(595, 354);
+            ControlBox = false;
             Controls.Add(richTextBox1);
             Controls.Add(label4);
             Controls.Add(buttonshowstat);
