@@ -20,6 +20,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnReschedule = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridTasks)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,12 +89,36 @@
             this.btnReschedule.UseVisualStyleBackColor = true;
             this.btnReschedule.Click += new System.EventHandler(this.btnReschedule_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.Gray;
+            this.btnExport.Location = new System.Drawing.Point(12, 577);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(101, 23);
+            this.btnExport.TabIndex = 6;
+            this.btnExport.Text = "Экспорт в файл";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.BackColor = System.Drawing.Color.Gray;
+            this.btnImport.Location = new System.Drawing.Point(119, 577);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(114, 23);
+            this.btnImport.TabIndex = 7;
+            this.btnImport.Text = "Импорт из файла";
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1404, 612);
+            this.Controls.Add(this.btnImport);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnReschedule);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
@@ -112,6 +138,8 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnReschedule;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnImport;
     }
 }
 

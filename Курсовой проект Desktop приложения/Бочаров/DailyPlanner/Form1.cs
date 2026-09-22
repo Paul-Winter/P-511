@@ -82,6 +82,37 @@ namespace DailyPlanner
                 }
             }
         }
+        private void ExportTasksLogic()
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "JSON файлы (*.json)|*.json|Все файлы (*.*)|*.*";
+                saveFileDialog.Title = "Сохранить ежедневник в файл";
+                saveFileDialog.FileName = "my_planner.json";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    manager.SaveToFile(saveFileDialog.FileName);
+                    MessageBox.Show("Данные успешно сохранены в файл!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void ImportTasksLogic()
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "JSON файлы (*.json)|*.json|Все файлы (*.*)|*.*";
+                openFileDialog.Title = "Выбрать файл ежедневника";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    manager.LoadFromFile(openFileDialog.FileName);
+                    UpdateGrid(); 
+                    MessageBox.Show("Данные успешно загружены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -107,6 +138,16 @@ namespace DailyPlanner
         {
             selectedDate = calendar.SelectionStart;
             UpdateGrid();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            ExportTasksLogic();
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            ImportTasksLogic();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
-namespace DailyPlanner
+namespace DailyPlanner 
 {
     public class PlannerTask
     {
@@ -55,5 +55,20 @@ namespace DailyPlanner
         {
             return Tasks.Where(t => t.Date.Date == date.Date).OrderBy(t => t.Date).ToList();
         }
-    }
-}
+
+        public void SaveToFile(string filePath)
+        {
+            var json = JsonSerializer.Serialize(Tasks, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, json);
+        }
+
+        public void LoadFromFile(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                var json = File.ReadAllText(filePath);
+                Tasks = JsonSerializer.Deserialize<List<PlannerTask>>(json) ?? new List<PlannerTask>();
+            }
+        }
+    } 
+} 
