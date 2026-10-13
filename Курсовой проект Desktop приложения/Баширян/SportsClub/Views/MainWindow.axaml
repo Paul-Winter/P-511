@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:SportsClub.ViewModels"
+        x:Class="SportsClub.Views.MainWindow"
+        Title="Спортивный клуб"
+        Width="1200" Height="700"
+        WindowStartupLocation="CenterScreen">
+
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10" Spacing="10">
+			<TextBox Text="{Binding SearchText}" Width="300" Watermark="Поиск по ФИО, телефону, email"/>
+			<Button Content="Поиск" Command="{Binding SearchCommand}"/>
+			<Button Content="Обновить" Command="{Binding RefreshCommand}"/>
+		</StackPanel>
+
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.Column="0" Margin="10" BorderBrush="Gray" BorderThickness="1" Padding="5">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="Клиенты" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="5" Margin="0,0,0,10">
+						<Button Content="Добавить" Command="{Binding AddClientCommand}"/>
+						<Button Content="Изменить" Command="{Binding EditClientCommand}"/>
+						<Button Content="Удалить" Command="{Binding DeleteClientCommand}"/>
+					</StackPanel>
+					<ListBox ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<TextBlock Text="{Binding FullName}" FontWeight="Bold"/>
+									<TextBlock Text="{Binding Phone}" FontSize="12"/>
+									<TextBlock Text="{Binding Login}" FontSize="12" Foreground="Gray"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<Border Grid.Column="1" Margin="10" BorderBrush="Gray" BorderThickness="1" Padding="5">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="Абонементы" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="5" Margin="0,0,0,10">
+						<Button Content="Добавить" Command="{Binding AddSubscriptionCommand}"/>
+						<Button Content="Изменить" Command="{Binding EditSubscriptionCommand}"/>
+						<Button Content="Удалить" Command="{Binding DeleteSubscriptionCommand}"/>
+					</StackPanel>
+					<ListBox ItemsSource="{Binding Subscriptions}" SelectedItem="{Binding SelectedSubscription}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel> 
+									<TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+									<TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="12"/>
+									<TextBlock Text="{Binding UsedVisits, StringFormat='Посещений: {0}'}" FontSize="12"/>
+									<TextBlock Text="{Binding IsActive, StringFormat='Активен: {0}'}" FontSize="12"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<Border Grid.Column="2" Margin="10" BorderBrush="Gray" BorderThickness="1" Padding="5">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="Посещения" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="5" Margin="0,0,0,10">
+						<Button Content="Отметить" Command="{Binding AddVisitCommand}"/>
+						<Button Content="Удалить" Command="{Binding DeleteVisitCommand}"/>
+					</StackPanel>
+					<ListBox ItemsSource="{Binding Visits}" SelectedItem="{Binding SelectedVisit}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<TextBlock Text="{Binding VisitDate, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" FontWeight="Bold"/>
+									<TextBlock Text="{Binding IsActive, StringFormat='Активно: {0}'}" FontSize="12"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+		</Grid>
+	</DockPanel>
+</Window>

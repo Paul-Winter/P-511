@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:SportsClub.ViewModels"
+        x:Class="SportsClub.Views.ClientDialog"
+        Title="{Binding Title}"
+        Width="450" Height="450"
+        WindowStartupLocation="CenterOwner">
+    
+    <StackPanel Margin="20" Spacing="8">
+        <TextBlock Text="ФИО:" FontWeight="Bold"/>
+        <TextBox Text="{Binding FullName}"/>
+
+        <TextBlock Text="Телефон:" FontWeight="Bold"/>
+        <TextBox Text="{Binding Phone}"/>
+
+        <TextBlock Text="Email:" FontWeight="Bold"/>
+        <TextBox Text="{Binding Email}"/>
+
+        <TextBlock Text="Логин:" FontWeight="Bold"/>
+        <TextBox Text="{Binding Login}"/>
+
+        <TextBlock Text="Пароль:" FontWeight="Bold"/>
+        <TextBox Text="{Binding Password}" PasswordChar="*"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,20,0,0">
+            <Button Content="Отмена" Width="100" Click="OnCancelClick"/>
+            <Button Content="Сохранить" Width="100" Click="OnSaveClick" IsEnabled="{Binding CanSave}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

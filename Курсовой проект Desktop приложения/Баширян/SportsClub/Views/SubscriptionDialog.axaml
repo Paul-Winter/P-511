@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:SportsClub.ViewModels"
+        x:Class="SportsClub.Views.SubscriptionDialog"
+        Title="{Binding Title}"
+        Width="450" Height="550"
+        WindowStartupLocation="CenterOwner">
+    
+    <StackPanel Margin="20" Spacing="8">
+        <TextBlock Text="Название абонемента:" FontWeight="Bold"/>
+        <TextBox Text="{Binding Name}"/>
+
+        <TextBlock Text="Цена:" FontWeight="Bold"/>
+        <TextBox Text="{Binding Price}"/>
+
+        <TextBlock Text="Дата начала:" FontWeight="Bold"/>
+        <DatePicker SelectedDate="{Binding StartDate}"/>
+
+        <TextBlock Text="Дата окончания:" FontWeight="Bold"/>
+        <DatePicker SelectedDate="{Binding EndDate}"/>
+
+        <TextBlock Text="Максимум посещений (пусто = безлимит):" FontWeight="Bold"/>
+        <TextBox Text="{Binding MaxVisits}"/>
+
+        <CheckBox Content="Активен" IsChecked="{Binding IsActive}"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,20,0,0">
+            <Button Content="Отмена" Width="100" Click="OnCancelClick"/>
+            <Button Content="Сохранить" Width="100" Click="OnSaveClick" IsEnabled="{Binding CanSave}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
