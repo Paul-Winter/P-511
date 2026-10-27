@@ -1,0 +1,4 @@
+Основной стенд: https://www.saucedemo.com/
+Дополнительный стенд: https://bstackdemo.com/
+Резервный стенд: https://www.lambdatest.com/selenium-playground
+Правило: если основной стенд недоступен более 10 минут, переходите на резерв и фиксируйте это в отчете.
