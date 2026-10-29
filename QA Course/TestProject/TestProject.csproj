@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ForTestLibrary\ForTestLibrary.csproj" />
+    <ProjectReference Include="..\White Box\White Box.csproj" />
   </ItemGroup>
 
   <ItemGroup>

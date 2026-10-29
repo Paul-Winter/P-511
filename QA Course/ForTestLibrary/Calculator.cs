@@ -16,6 +16,8 @@
         }
         public int Div(int a, int b)
         {
+            if (b == 0)
+                return b;
             return a / b;
         }
     }
