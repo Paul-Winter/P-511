@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../ForTestLibrary/ForTestLibrary.csproj" />
+  <Project Path="../TestProject/TestProject.csproj" />
+  <Project Path="White Box.csproj" />
+</Solution>
