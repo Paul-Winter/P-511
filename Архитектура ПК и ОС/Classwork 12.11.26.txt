@@ -1,0 +1,19 @@
+1) создайте рабочую папку: mkdir workshop
+
+2) создайте файл отчёта о проверке сети и запишите в него результат команды:
+ping 8.8.8.8 -c 4
+
+3) создайте файл отчёта обновлений и запишите в него результаты команд:
+sudo apt update (5-10 строк вывода)
+apt list --upgradable (15 строк вывода)
+sudo apt autoremove
+
+4) создайте файл отчёта по "железу" и запишите в него результаты команд:
+lscpu
+nproc
+cat /proc/cpuinfo
+free -h
+lsblk
+mount | head
+uname -m
+hostnamectl
