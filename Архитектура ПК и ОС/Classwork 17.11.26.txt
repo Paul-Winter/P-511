@@ -1,0 +1,20 @@
+1) Создать папку:
+mkdir -p ~/proc-workshop/logs
+2) Создать в ней файл:
+~/proc-workshop/logs/proc-checklist.txt: дата, hostname, ps -p 1 -o comm=
+3) Записать в него PID shell:
+echo $$
+ps -p $$ -o pid,ppid,stat,cmd
+pstree -p | grep -E "$$|bash" | head -n 5
+4) Сделать снимок системы:
+ps -eo pid,ppid,stat,ni,pcpu,cmd --sort=-pcpu | head -n 12
+5) Запустить тестовые процессы:
+sleep 200 &
+ps -p PID -o pid,stat,ni,cmd
+renice +10 -p PID
+6) Завершить тестовые процессы:
+kill PID для одного из sleep
+ps -p PID
+pgrep -a sleep
+7) Сохранить в файл отчёта:
+~/proc-workshop/logs/proc-report.txt
