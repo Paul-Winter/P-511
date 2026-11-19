@@ -1,0 +1,24 @@
+1) Создать папку:
+mkdir -p ~/workshop
+2) Создать в ней файл:
+~/workshop/mem-report.txt
+3) Записать в него результаты работы команд:
+free -h
+grep -E `^(MemTotal|MemAvailable|SwapTotal|SwapFree|Cached|Buffers)` /proc/meminfo
+swapon --show
+vmstat 1 2
+ps -eo pid,rss,comm --sort=-rss | head -n 8
+grep VmRSS /proc/self/status
+dmesg | grep -i -E `oom|out of memory` tail -n 5
+4) Создать ещё файл:
+~/workshop/fs-report.txt
+5) Записать в него результаты работы команд:
+lsblk -f
+df -hT /
+findmnt /
+findmnt /boot /boot/efi 2>/dev/null
+echo hello > ~/workshop/test.txt
+ls -i ~/workshop/test.txt
+stat ~/workshop/test.txt
+df -h /
+du -sh ~/workshop
