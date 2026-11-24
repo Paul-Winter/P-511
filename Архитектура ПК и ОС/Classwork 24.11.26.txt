@@ -1,0 +1,22 @@
+1) Создать папку (если нет):
+mkdir -p ~/workshop
+2) Создать в ней файл:
+~/workshop/net-report.txt
+3) Записать в него результаты работы команд:
+ip -br addr
+hostname -I
+ip route
+ip route show default
+ip route get 1.1.1.1
+cat /etc/resolv.conf
+dig +short ubuntu.com ИЛИ getent hosts ubuntu.com
+ping -c 3 [на шлюз]
+ping -c 3 1.1.1.1
+ss -tuln | head -n 20
+
+ip -4 -br addr
+systemctl is-active ssh
+ss -tln | grep ':22'
+systemctl status ssh --no-pager | head -n 10
+ssh -o StrictHostKeyChecking=accept-new localhost echo ok
+journalctl -u ssh -n 5 --no-pager
