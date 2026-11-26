@@ -1,0 +1,18 @@
+1) Создать папку (если нет):
+mkdir -p ~/workshop
+2) Создать в ней файл:
+~/workshop/ops-report.txt
+3) Записать в него результаты работы команд:
+systemctl status ssh --no-pager | head -n 12
+systemctl is-enabled ssh
+systemctl --failed
+systemctl list-units --type=service --state=running | ws -l
+journalctl -b -p err --no-pager | head -n 12
+journalctl -u ssh -n 10 --no-pager
+df -h /
+free -h | head -n 2
+ip -br addr | head -n 3
+sudo ufw status
+echo backup-test > ~/workshop/backup.txt
+tar -czf ~/workshop/backup-test.tar.gz -C ~/workshop
+tar -tzf ~/workshop/backup-test.tar.gz
